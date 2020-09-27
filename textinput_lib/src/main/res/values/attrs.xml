@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="LineBottomTextInputLayoutStyle" format="reference"/>
+    <declare-styleable name="LineBottomTextInputLayout">
+        <attr name="default_color" format="color"/>
+        <attr name="active_color" format="color"/>
+        <attr name="hint_text_size" format="dimension"/>
+        <attr name="line_height" format="dimension"/>
+        <attr name="hint" format="string"/>
+
+    </declare-styleable>
+</resources>

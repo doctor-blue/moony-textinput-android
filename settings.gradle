@@ -1,0 +1,4 @@
+include ':textinput_lib'
+include ':bottombar_lib'
+include ':app'
+rootProject.name = "NoName Libs Android"
