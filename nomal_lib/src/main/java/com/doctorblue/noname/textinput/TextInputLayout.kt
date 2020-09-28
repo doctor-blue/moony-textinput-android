@@ -1,4 +1,4 @@
-package com.doctorblue.noname_library.base
+package com.doctorblue.noname.textinput
 
 import android.content.Context
 import android.util.AttributeSet

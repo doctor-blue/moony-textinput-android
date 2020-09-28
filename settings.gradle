@@ -1,4 +1,5 @@
-include ':textinput_lib'
+include ':tabs_lib'
+include ':nomal_lib'
 include ':bottombar_lib'
 include ':app'
 rootProject.name = "NoName Libs Android"

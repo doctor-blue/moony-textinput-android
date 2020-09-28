@@ -14,7 +14,6 @@ import androidx.annotation.Dimension
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
 import com.doctorblue.noname_library.R
-import com.doctorblue.noname_library.base.TextInputLayout
 import kotlin.math.roundToInt
 
 /**
@@ -93,14 +92,18 @@ class LineBottomTextInputLayout @JvmOverloads constructor(
         )
         // get custom attribute
         try {
-            lineHeight = typedArray.getDimension(R.styleable.LineBottomTextInputLayout_line_height,
-                lineHeight.toFloat()).toInt()
+            lineHeight = typedArray.getDimension(
+                R.styleable.LineBottomTextInputLayout_line_height,
+                lineHeight.toFloat()
+            ).toInt()
 
             activeColor =
                 typedArray.getColor(R.styleable.LineBottomTextInputLayout_active_color, activeColor)
 
-            defaultColor = typedArray.getColor(R.styleable.LineBottomTextInputLayout_default_color,
-                defaultColor)
+            defaultColor = typedArray.getColor(
+                R.styleable.LineBottomTextInputLayout_default_color,
+                defaultColor
+            )
 
             _hintTextSize =
                 typedArray.getDimension(R.styleable.LineBottomTextInputLayout_hint_text_size, 0f)
