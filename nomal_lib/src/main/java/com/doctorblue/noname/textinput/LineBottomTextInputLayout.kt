@@ -6,11 +6,13 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.View
+import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
-import android.widget.FrameLayout
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.Dimension
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
 import com.doctorblue.noname_library.R
@@ -23,8 +25,29 @@ Create by Nguyen Van Tan 9/2020
 class LineBottomTextInputLayout @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = R.attr.LineBottomTextInputLayoutStyle,
-) : TextInputLayout(context, attrs, defStyleAttr) {
+    defStyleAttr: Int = R.attr.LineBottomTextInputLayoutStyle
+) :
+    LinearLayout(context, attrs, defStyleAttr), View.OnFocusChangeListener {
+    var editText: AppCompatEditText? = null
+    private var hintText = TextView(context)
+
+    @Dimension
+    private var _hintTextSize: Float = (3f * resources.displayMetrics.density)
+
+    @Dimension
+    var hintTextSize: Float = _hintTextSize
+        set(@Dimension value) {
+            _hintTextSize = value
+            hintText.textSize = value
+            field = value
+        }
+
+
+    var hint: String = ("Goodbye, world")
+        set(value) {
+            field = value
+            hintText.text = value
+        }
 
 
     @ColorInt
@@ -54,33 +77,12 @@ class LineBottomTextInputLayout @JvmOverloads constructor(
             lineLP.height = value
         }
 
-    @Dimension
-    private var _hintTextSize: Float = 0f
-
-    @Dimension
-    var hintTextSize: Float = _hintTextSize
-        set(@Dimension value) {
-            _hintTextSize = value
-            hintText.textSize = value
-            field = value
-        }
-
-
-    var hint: String = ("Goodbye, world")
-        set(value) {
-            field = value
-            hintText.text = value
-        }
-
-    private var hintText = TextView(context)
     private var line = View(context)
     private val lineLP = LayoutParams(LayoutParams.MATCH_PARENT, lineHeight * 2)
     private var hasFocus: Boolean = false
-
-    init {
-        lineLP.topMargin = (2f * resources.displayMetrics.density).roundToInt()
-        obtainStyledAttributes(attrs, defStyleAttr)
-    }
+    private var defaultHintY = 0f
+    private var defaultLineY = 0f
+    private var hasHint = false
 
 
     private fun obtainStyledAttributes(attrs: AttributeSet?, defStyleAttr: Int) {
@@ -106,7 +108,10 @@ class LineBottomTextInputLayout @JvmOverloads constructor(
             )
 
             _hintTextSize =
-                typedArray.getDimension(R.styleable.LineBottomTextInputLayout_hint_text_size, 0f)
+                typedArray.getDimension(
+                    R.styleable.LineBottomTextInputLayout_hint_text_size,
+                    _hintTextSize
+                )
 
             hint = typedArray.getString(R.styleable.LineBottomTextInputLayout_hint) ?: hint
 
@@ -119,51 +124,54 @@ class LineBottomTextInputLayout @JvmOverloads constructor(
         line.setBackgroundColor(defaultColor)
 
         line.layoutParams = lineLP
-        addView(line)
+    }
 
 
+    init {
+        orientation = VERTICAL
+        this.setWillNotDraw(false)
+        this.setAddStatesFromChildren(true)
+
+        lineLP.topMargin = (2f * resources.displayMetrics.density).roundToInt()
+
+        obtainStyledAttributes(attrs, defStyleAttr)
+
+    }
+
+    override fun addView(child: View?, index: Int, params: ViewGroup.LayoutParams?) {
+        if (child is AppCompatEditText) {
+            // set edit text
+            this.editText = child
+            super.addView(child, index, params)
+            child.setOnFocusChangeListener(this)
+
+            //add line and hint
+            if (!hasHint) {
+                initHintAndLine()
+                addView(line)
+                addView(hintText)
+            }
+        } else {
+            super.addView(child, index, params)
+        }
+    }
+
+    private fun initHintAndLine() {
+        hintText = TextView(context)
         hintText.text = hint
         hintText.setTextColor(defaultColor)
         hintText.textSize = _hintTextSize
         hintText.typeface = Typeface.DEFAULT_BOLD
-        addView(hintText)
     }
-
-    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        super.onSizeChanged(w, h, oldw, oldh)
-        editText?.layoutParams = FrameLayout.LayoutParams(w, h * 2 / 3)
-
-        if (_hintTextSize == 0f) {
-            hintText.textSize = h / 10f
-            _hintTextSize = hintText.textSize
-        }
-
-    }
-
-    private var defaultHintPos = 0f
-    private var defaultLinePos = 0f
-    override fun onFocusChange(v: View?, hasFocus: Boolean) {
-        defaultHintPos = if (defaultHintPos == 0f) hintText.y else defaultHintPos
-        defaultLinePos = if (defaultLinePos == 0f) line.y else defaultLinePos
-        this.hasFocus = hasFocus
-
-        if (hasFocus) {
-            onFocus()
-        } else {
-            onUnFocus()
-        }
-
-    }
-
 
     private fun onFocus() {
         // start animation
-        startAnim(defaultHintPos, defaultLinePos - hintText.height).apply {
+        startAnim(hintText.y, hintText.y - hintText.height).apply {
             doOnStart {
                 animateAlpha(1f, 0f).start()
             }
             doOnEnd {
-                startAnim(defaultHintPos + hintText.height, defaultHintPos + lineHeight * 3).apply {
+                startAnim(line.y + hintText.height, line.y).apply {
                     doOnStart {
                         animateAlpha(0f, 1f).start()
                         //Change text and line color
@@ -179,13 +187,14 @@ class LineBottomTextInputLayout @JvmOverloads constructor(
         }
     }
 
+
     private fun onUnFocus() {
-        startAnim(defaultHintPos, defaultHintPos + hintText.height).apply {
+        startAnim(hintText.y, hintText.y - hintText.height).apply {
             doOnStart {
                 animateAlpha(1f, 0f).start()
             }
             doOnEnd {
-                startAnim(defaultLinePos - hintText.height, defaultHintPos + lineHeight).apply {
+                startAnim(line.y + hintText.height, line.y).apply {
                     doOnStart {
                         animateAlpha(0f, 1f).start()
 
@@ -212,6 +221,7 @@ class LineBottomTextInputLayout @JvmOverloads constructor(
             }
         }
 
+
     private fun animateAlpha(start: Float, end: Float): ValueAnimator =
         ValueAnimator.ofFloat(start, end).apply {
             duration = 75
@@ -220,5 +230,17 @@ class LineBottomTextInputLayout @JvmOverloads constructor(
                 hintText.alpha = it.animatedValue as Float
             }
         }
+
+    override fun onFocusChange(v: View?, hasFocus: Boolean) {
+        defaultHintY = if (defaultHintY == 0f) hintText.y else defaultHintY
+        defaultLineY = line.y
+        this.hasFocus = hasFocus
+
+        if (hasFocus) {
+            onFocus()
+        } else {
+            onUnFocus()
+        }
+    }
 
 }
