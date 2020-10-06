@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.Design.TextInputLayout" parent="android:Widget"/>
+    <!--Base Style-->
+    <style name="Base.Widget.NoNameLib.TextInputLayout" parent="Widget.Design.TextInputLayout">
+        <item name="default_color">@color/colorAccent</item>
+        <item name="active_color">@color/colorPrimary</item>
+    </style>
+    <style name="Widget.NoNameLib.TextInputLayout.BottomLine" parent="Base.Widget.NoNameLib.TextInputLayout">
+        <item name="text_input_style">bottom_line</item>
+    </style>
+</resources>

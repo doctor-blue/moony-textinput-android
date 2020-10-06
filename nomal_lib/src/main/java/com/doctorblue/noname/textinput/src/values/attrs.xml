@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <attr name="LineBottomTextInputLayoutStyle" format="reference"/>
-    <declare-styleable name="LineBottomTextInputLayout">
+    <attr name="TextInputLayoutStyle" format="reference"/>
+    <declare-styleable name="TextInputLayout">
         <attr name="default_color" format="color"/>
         <attr name="active_color" format="color"/>
         <attr name="hint_text_size" format="dimension"/>
         <attr name="line_height" format="dimension"/>
-        <attr name="hint" format="string"/>
-
+        <attr name="android:hint" format="string"/>
+        <attr name="text_input_style" format="enum">
+            <enum name="bottom_line" value="1"/>
+        </attr>
     </declare-styleable>
 </resources>
