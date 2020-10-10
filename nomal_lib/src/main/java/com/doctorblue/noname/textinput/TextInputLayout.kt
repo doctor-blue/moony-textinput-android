@@ -57,6 +57,9 @@ class TextInputLayout @JvmOverloads constructor(
             textInputStyle?.activeColor = value
         }
 
+    /**
+     * lineHeight is a custom attribute for LineBottomStyle
+     */
     @Dimension
     var lineHeight: Int = (2f * resources.displayMetrics.density).roundToInt()
         set(@Dimension value) {
@@ -108,6 +111,7 @@ class TextInputLayout @JvmOverloads constructor(
                     1
                 ), context, this
             )
+
 
         } catch (e: Exception) {
             //for test

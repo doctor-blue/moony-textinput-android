@@ -29,7 +29,7 @@ class LineBottomStyle(context: Context, textInputLayout: TextInputLayout) :
         }
 
 
-    override var hint: String = ("Goodbye, world!")
+    override var hint: String = super.hint
         set(value) {
             field = value
             hintText.text = value
@@ -108,7 +108,6 @@ class LineBottomStyle(context: Context, textInputLayout: TextInputLayout) :
 
     private fun initHintAndLine() {
         hintText.text = hint
-        val a = Color.GRAY
         hintText.setTextColor(defaultColor)
         hintText.textSize = _hintTextSize
         hintText.typeface = Typeface.DEFAULT_BOLD

@@ -57,9 +57,13 @@ class TabLayout @JvmOverloads constructor(
 
     private val tabPool: Pools.Pool<TabItem> = SynchronizedPool(16)
 
-    var viewPager:ViewPager?=null
+    var viewPager: ViewPager? = null
 
-    private var tabs:MutableList<Tab> = mutableListOf()
+    private var tabs: MutableList<Tab> = mutableListOf()
+
+    init {
+        //addView(tabBar)
+    }
 
 
 }
