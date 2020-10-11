@@ -2,7 +2,6 @@ package com.doctorblue.noname.textinput
 
 import android.animation.ValueAnimator
 import android.content.Context
-import android.graphics.Color
 import android.graphics.Typeface
 import android.view.View
 import android.view.animation.DecelerateInterpolator
@@ -19,6 +18,7 @@ class LineBottomStyle(context: Context, textInputLayout: TextInputLayout) :
 
     @Dimension
     private var _hintTextSize: Float = (3f * context.resources.displayMetrics.density)
+
 
     @Dimension
     override var hintTextSize: Float = _hintTextSize
@@ -82,15 +82,24 @@ class LineBottomStyle(context: Context, textInputLayout: TextInputLayout) :
         line!!.setBackgroundColor(defaultColor)
         line!!.layoutParams = lineLP
         lineLP.topMargin = (2f * context.resources.displayMetrics.density).roundToInt()
+
+        // setup inputFrame
+        //cast inputFrame to LinearLayout
+        (inputFrame as LinearLayout).apply {
+            // set some property
+            orientation = LinearLayout.VERTICAL
+        }
     }
 
 
-    override fun addView() {
-        //add line and hint
+
+    override fun onEditTextAdded() {
+        super.onEditTextAdded()
+        //add line and hint after add edit text
         if (!hasHint) {
             initHintAndLine()
-            textInputLayout.addView(line)
-            textInputLayout.addView(hintText)
+            inputFrame.addView(line)
+            inputFrame.addView(hintText)
         }
     }
 

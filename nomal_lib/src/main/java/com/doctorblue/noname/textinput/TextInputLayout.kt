@@ -74,6 +74,7 @@ class TextInputLayout @JvmOverloads constructor(
         }
 
     private var textInputStyle: TextInputStyle? = null
+    var hasInputFrame = false
 
     private fun obtainStyledAttributes(attrs: AttributeSet?, defStyleAttr: Int) {
         val typedArray = context.theme.obtainStyledAttributes(
@@ -134,13 +135,13 @@ class TextInputLayout @JvmOverloads constructor(
     }
 
     override fun addView(child: View?, index: Int, params: ViewGroup.LayoutParams?) {
-        if (child is AppCompatEditText) {
-            // set edit text
-            setEditText(child)
-            super.addView(child, index, params)
-            editText!!.onFocusChangeListener = textInputStyle
-            textInputStyle!!.addView()
 
+        /**
+         * Check if TextInputLayout has an inputFrame or not, if so, add child to inputFrame.
+         *
+         */
+        if (hasInputFrame) {
+            textInputStyle!!.addView(child, index, params)
         } else {
             super.addView(child, index, params)
         }
