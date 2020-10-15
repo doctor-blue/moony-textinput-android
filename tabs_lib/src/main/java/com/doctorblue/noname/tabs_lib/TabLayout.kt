@@ -1,8 +1,10 @@
-package com.doctorblue.noname
+package com.doctorblue.noname.tabs_lib
 
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
+import android.view.View
+import android.view.ViewGroup
 import android.widget.HorizontalScrollView
 import androidx.annotation.ColorInt
 import androidx.annotation.Dimension
@@ -62,7 +64,22 @@ class TabLayout @JvmOverloads constructor(
     private var tabs: MutableList<Tab> = mutableListOf()
 
     init {
-        //addView(tabBar)
+        addView(tabBar)
+    }
+
+
+    override fun addView(child: View?, params: ViewGroup.LayoutParams?) {
+        if (child !is TabBar) {
+            //if (child !is TabItem) return
+            tabBar.addView(child,params)
+        } else {
+            super.addView(child, params)
+        }
+
+    }
+
+    private fun addTab(){
+
     }
 
 

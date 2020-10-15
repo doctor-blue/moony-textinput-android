@@ -1,4 +1,4 @@
-package com.doctorblue.noname
+package com.doctorblue.noname.tabs_lib
 
 import org.junit.Test
 

@@ -1,16 +1,19 @@
-package com.doctorblue.noname
+package com.doctorblue.noname.tabs_lib
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
+import android.widget.LinearLayout
 
 /**
  * Create by Nguyen Van Tan 9/2020
  */
-class TabItem @JvmOverloads constructor(
+class TabBar @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = R.attr.TabLayoutStyle,
-):View(context,attrs,defStyleAttr){
+) : LinearLayout(context, attrs, defStyleAttr) {
 
+    init {
+        orientation = HORIZONTAL
+    }
 }
