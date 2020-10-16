@@ -8,5 +8,5 @@ import android.graphics.drawable.Drawable
 class Tab(
     var id: Int = -1,
     var title: String,
-    val icon: Drawable,
+    val imageRes: Int,
 )

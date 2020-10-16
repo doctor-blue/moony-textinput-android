@@ -55,30 +55,38 @@ class TabLayout @JvmOverloads constructor(
 
     var indicatorDuration: Long = 200L
 
-    private var indicatorPosition = null
+    private var indicatorPosition: Float? = null
 
     private val tabPool: Pools.Pool<TabItem> = SynchronizedPool(16)
 
     var viewPager: ViewPager? = null
 
     private var tabs: MutableList<Tab> = mutableListOf()
+    private var tabItems: MutableList<TabItem> = mutableListOf()
 
     init {
+        tabBar.tabItems = tabItems
         addView(tabBar)
     }
 
 
     override fun addView(child: View?, params: ViewGroup.LayoutParams?) {
         if (child !is TabBar) {
-            //if (child !is TabItem) return
-            tabBar.addView(child,params)
+            if (child !is TabItem) return
+            tabBar.addView(child, params)
+            addTab(child)
         } else {
             super.addView(child, params)
         }
 
     }
 
-    private fun addTab(){
+    private fun addTab(tabItem: TabItem) {
+        tabItems.add(tabItem)
+        tabItem.position = tabItems.size-1
+
+        val tab = Tab(title = tabItem.text, imageRes = tabItem.imageRes)
+        tabItem.tab = tab
 
     }
 
