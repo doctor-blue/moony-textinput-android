@@ -17,15 +17,10 @@ class LineBottomStyle(context: Context, textInputLayout: TextInputLayout) :
 
 
     @Dimension
-    private var _hintTextSize: Float = (3f * context.resources.displayMetrics.density)
-
-
-    @Dimension
-    override var hintTextSize: Float = _hintTextSize
+    override var hintTextSize: Float = super.hintTextSize
         set(@Dimension value) {
-            _hintTextSize = value
-            hintText.textSize = value
             field = value
+            hintText.textSize = value
         }
 
 
@@ -118,7 +113,7 @@ class LineBottomStyle(context: Context, textInputLayout: TextInputLayout) :
     private fun initHintAndLine() {
         hintText.text = hint
         hintText.setTextColor(defaultColor)
-        hintText.textSize = _hintTextSize
+        hintText.textSize = hintTextSize
         hintText.typeface = Typeface.DEFAULT_BOLD
     }
 

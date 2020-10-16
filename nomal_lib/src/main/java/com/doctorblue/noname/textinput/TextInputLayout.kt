@@ -29,7 +29,7 @@ class TextInputLayout @JvmOverloads constructor(
     var hintText = TextView(context)
 
     @Dimension
-    var hintTextSize: Float = (3f * resources.displayMetrics.density)
+    var hintTextSize: Float = (4f * resources.displayMetrics.density)
         set(@Dimension value) {
             field = value
             textInputStyle?.hintTextSize = value
@@ -44,7 +44,7 @@ class TextInputLayout @JvmOverloads constructor(
 
 
     @ColorInt
-    var defaultColor: Int = context.resources.getColor(R.color.colorAccent)
+    var defaultColor: Int = context.resources.getColor(R.color.colorPrimaryDark)
         set(@ColorInt value) {
             field = value
             textInputStyle?.defaultColor = value
