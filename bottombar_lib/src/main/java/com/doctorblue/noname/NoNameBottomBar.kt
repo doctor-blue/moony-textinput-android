@@ -243,7 +243,6 @@ class NoNameBottomBar @JvmOverloads constructor(
         val margins: ViewGroup.MarginLayoutParams? =
             ViewGroup.MarginLayoutParams::class.java.cast(layoutParams)
         margins?.let { bottomMargin = it.bottomMargin.toFloat() }
-        defaultY = y
     }
 
 
@@ -389,6 +388,7 @@ class NoNameBottomBar @JvmOverloads constructor(
     }
 
     fun show() {
+        if (defaultY == 0f) defaultY = y
         if (!isShow) {
             ValueAnimator.ofFloat(y, defaultY).apply {
                 duration = 300

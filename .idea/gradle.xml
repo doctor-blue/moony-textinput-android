@@ -14,7 +14,6 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/bottombar_lib" />
             <option value="$PROJECT_DIR$/nomal_lib" />
-            <option value="$PROJECT_DIR$/tabs_lib" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

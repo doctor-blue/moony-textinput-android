@@ -6,36 +6,38 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
+    <!--        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/edt"/>
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent" />
+            <com.doctorblue.noname.textinput.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Hahaha"
+                android:id="@+id/textInput"
+                app:layout_constraintTop_toBottomOf="@+id/edt">
 
-    <com.doctorblue.noname.textinput.LineBottomTextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/editText">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.doctorblue.noname.textinput.TextInputLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/btn"
+                app:layout_constraintTop_toBottomOf="@id/textInput"/>-->
 
-        <EditText
-            android:id="@+id/edt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:background="@null" />
-    </com.doctorblue.noname.textinput.LineBottomTextInputLayout>
-
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <com.doctorblue.noname.NoNameBottomBar
+        android:id="@+id/noNameBottomBar"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        app:menu="@menu/bottom_menu"
+        style="@style/Widget.NoNameLib.BottomBar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
-        <com.doctorblue.noname.NoNameBottomBar
-            android:id="@+id/no_name_bottombar"
-            android:layout_width="1000dp"
-            android:layout_height="50dp"
-            app:menu="@menu/bottom_menu" />
-    </HorizontalScrollView>
+        app:layout_constraintStart_toStartOf="parent"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

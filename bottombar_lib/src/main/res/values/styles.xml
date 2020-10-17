@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.NoNameLib.BottomBar" parent="Widget.AppCompat.Toolbar">
+        <item name="indicatorColor">@color/colorAccent</item>
+        <item name="iconSize">24dp</item>
+        <item name="iconTintActive">@color/colorPrimaryDark</item>
+        <item name="iconTint">@color/colorPrimary</item>
+        <item name="indicatorType">point</item>
+        <item name="indicatorPosition">bottom</item>
+    </style>
+</resources>
