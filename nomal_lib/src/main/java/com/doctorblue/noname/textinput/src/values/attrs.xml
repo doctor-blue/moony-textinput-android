@@ -8,8 +8,10 @@
         <attr name="hint_text_size" format="dimension"/>
         <attr name="line_height" format="dimension"/>
         <attr name="android:hint" format="string"/>
+        <attr name="leftIcon" format="reference"/>
         <attr name="text_input_style" format="enum">
             <enum name="bottom_line" value="1"/>
+            <enum name="kohana" value="3"/>
         </attr>
     </declare-styleable>
 </resources>

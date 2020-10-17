@@ -9,4 +9,7 @@
     <style name="Widget.NoNameLib.TextInputLayout.BottomLine" parent="Base.Widget.NoNameLib.TextInputLayout">
         <item name="text_input_style">bottom_line</item>
     </style>
+    <style name="Widget.NoNameLib.TextInputLayout.Kohana" parent="Base.Widget.NoNameLib.TextInputLayout">
+        <item name="text_input_style">kohana</item>
+    </style>
 </resources>

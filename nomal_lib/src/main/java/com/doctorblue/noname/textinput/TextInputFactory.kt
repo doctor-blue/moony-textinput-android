@@ -8,6 +8,7 @@ object TextInputFactory {
     fun getStyle(type: Int, context: Context, textInputLayout: TextInputLayout): TextInputStyle =
         when (type) {
             1 -> LineBottomStyle(context, textInputLayout)
+            3-> KohanaStyle(context, textInputLayout)
             else -> LineBottomStyle(context, textInputLayout)
         }
 }
