@@ -34,6 +34,7 @@ class NoNameBottomBar @JvmOverloads constructor(
     defStyleAttr: Int = R.attr.NoNameBottomBarStyle
 ) : View(context, attrs, defStyleAttr) {
 
+
     //Attributes
 
     @ColorInt
