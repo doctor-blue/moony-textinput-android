@@ -11,7 +11,8 @@
         <attr name="leftIcon" format="reference"/>
         <attr name="text_input_style" format="enum">
             <enum name="bottom_line" value="1"/>
-            <enum name="kohana" value="3"/>
+            <enum name="swipe_left_icon" value="3"/>
+            <enum name="active_bottom_line" value="4"/>
         </attr>
     </declare-styleable>
 </resources>

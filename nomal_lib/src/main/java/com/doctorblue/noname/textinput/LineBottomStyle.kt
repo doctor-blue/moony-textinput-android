@@ -70,7 +70,6 @@ class LineBottomStyle(context: Context, textInputLayout: TextInputLayout) :
         LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, lineHeight * 2)
     private var defaultHintY = 0f
     private var defaultLineY = 0f
-    private var hasHint = false
 
     init {
         // setup inputFrame
@@ -82,15 +81,13 @@ class LineBottomStyle(context: Context, textInputLayout: TextInputLayout) :
     }
 
 
-
     override fun onEditTextAdded() {
         super.onEditTextAdded()
         //add line and hint after add edit text
-        if (!hasHint) {
-            initHintAndLine()
-            inputFrame.addView(line)
-            inputFrame.addView(hintText)
-        }
+        initHintAndLine()
+        inputFrame.addView(line)
+        inputFrame.addView(hintText)
+
     }
 
     override fun onFocusChange(v: View?, hasFocus: Boolean) {

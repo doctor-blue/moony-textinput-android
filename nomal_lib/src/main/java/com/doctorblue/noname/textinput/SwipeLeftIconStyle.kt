@@ -13,7 +13,7 @@ import androidx.annotation.Dimension
 import androidx.core.animation.doOnStart
 import kotlin.math.roundToInt
 
-class KohanaStyle(context: Context, textInputLayout: TextInputLayout) :
+class SwipeLeftIconStyle(context: Context, textInputLayout: TextInputLayout) :
     TextInputStyle(context, textInputLayout) {
 
 
@@ -82,6 +82,7 @@ class KohanaStyle(context: Context, textInputLayout: TextInputLayout) :
         // hintFrame.setBackgroundColor(Color.BLACK)
     }
 
+
     override fun onAddEditText() {
         super.onAddEditText()
         inputFrame.addView(hintFrame)
@@ -116,11 +117,14 @@ class KohanaStyle(context: Context, textInputLayout: TextInputLayout) :
     }
 
 
-    private var defaultHintX = -1f
-    private var defaultIconX = 0f
+    private val defaultHintX by lazy {
+        hintText.x
+    }
+    private val defaultIconX by lazy {
+        leftIcon.x
+    }
+
     override fun onFocusChange(v: View?, hasFocus: Boolean) {
-        defaultHintX = if (defaultHintX==-1f) hintText.x else defaultHintX
-        defaultIconX = if (defaultIconX == 0f) leftIcon.x else defaultIconX
         this.hasFocus = hasFocus
 
         if (hasFocus) {
@@ -132,7 +136,7 @@ class KohanaStyle(context: Context, textInputLayout: TextInputLayout) :
 
     private fun onFocus() {
         // start animation
-        if (hintText.visibility==View.INVISIBLE)
+        if (hintText.visibility == View.INVISIBLE)
             hintText.visibility = View.VISIBLE
 
 
@@ -143,7 +147,7 @@ class KohanaStyle(context: Context, textInputLayout: TextInputLayout) :
             start()
         }
 
-        startAnim(leftIcon.x, hintFrame.width + leftIcon.width.toFloat(), leftIcon).apply {
+        startAnim(defaultIconX, hintFrame.width + leftIcon.width.toFloat(), leftIcon).apply {
             doOnStart {
                 animateAlpha(1f, 0f, leftIcon).start()
             }

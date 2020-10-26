@@ -77,8 +77,8 @@ class TextInputLayout @JvmOverloads constructor(
         set(value) {
             field = value
             if (textInputStyle != null) {
-                if (textInputStyle is KohanaStyle) {
-                    (textInputStyle as KohanaStyle).icon = value
+                if (textInputStyle is SwipeLeftIconStyle) {
+                    (textInputStyle as SwipeLeftIconStyle).icon = value
                 } else {
                     throw  IllegalArgumentException("textInputStyle has no leftIcon property !")
                 }
