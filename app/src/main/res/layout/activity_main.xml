@@ -6,38 +6,45 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
-    <!--        <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                android:id="@+id/edt"/>
 
-            <com.doctorblue.noname.textinput.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Hahaha"
-                android:id="@+id/textInput"
-                app:layout_constraintTop_toBottomOf="@+id/edt">
+    <EditText
+        android:id="@+id/edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        app:layout_constraintTop_toTopOf="parent" />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.doctorblue.noname.textinput.TextInputLayout>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:id="@+id/btn"
-                app:layout_constraintTop_toBottomOf="@id/textInput"/>-->
+    <com.doctorblue.noname.textinput.TextInputLayout
+        android:id="@+id/textInput"
+        style="@style/Widget.NoNameLib.TextInputLayout.ActiveBottomLine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/edt"
+        app:leftIcon="@drawable/ic_outline_account_24">
 
-    <com.doctorblue.noname.NoNameBottomBar
-        android:id="@+id/noNameBottomBar"
+        <EditText
+            android:background="@null"
+            android:id="@+id/edt_"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.doctorblue.noname.textinput.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        app:menu="@menu/bottom_menu"
-        style="@style/Widget.NoNameLib.BottomBar"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@id/textInput" />
+
+    <!--    <com.doctorblue.noname.NoNameBottomBar
+            android:id="@+id/noNameBottomBar"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            app:menu="@menu/bottom_menu"
+            style="@style/Widget.NoNameLib.BottomBar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />-->
 </androidx.constraintlayout.widget.ConstraintLayout>
