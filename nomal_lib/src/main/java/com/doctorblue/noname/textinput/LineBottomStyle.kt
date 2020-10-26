@@ -59,8 +59,9 @@ class LineBottomStyle(context: Context, textInputLayout: TextInputLayout) :
     var lineHeight: Int = textInputLayout.lineHeight
         set(@Dimension value) {
             field = value
-            if (line != null) {
-                lineLP.height = value
+            lineLP.height = value
+            line?.let {
+                it.layoutParams = lineLP
             }
         }
 

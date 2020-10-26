@@ -45,8 +45,8 @@ class ActiveBottomLineStyle(context: Context, textInputLayout: TextInputLayout) 
         set(@ColorInt value) {
             field = value
             if (hasFocus) {
-                if (line != null) {
-                    line!!.setBackgroundColor(value)
+                if (activeLine != null) {
+                    activeLine!!.setBackgroundColor(value)
                 }
                 hintText.setTextColor(value)
             }
@@ -56,9 +56,17 @@ class ActiveBottomLineStyle(context: Context, textInputLayout: TextInputLayout) 
     var lineHeight: Int = textInputLayout.lineHeight
         set(@Dimension value) {
             field = value
-            if (line != null) {
-                lineLP.height = value
+            lineLP.height = value
+            activeLineLP.height = value * 2
+
+            activeLine?.let {
+                it.layoutParams = activeLineLP
             }
+
+            line?.let {
+                it.layoutParams = lineLP
+            }
+
         }
 
 
@@ -144,8 +152,9 @@ class ActiveBottomLineStyle(context: Context, textInputLayout: TextInputLayout) 
                 animateHint(defaultHintX, hintText.x + hintText.width).apply {
                     animateAlpha(1f, 0f).start()
                     doOnEnd {
-                        animateHint(0f, defaultHintX+defaultHintX/2f).apply {
+                        animateHint(0f, defaultHintX + defaultHintX / 2f).apply {
                             doOnStart {
+                                hintText.setTextColor(activeColor)
                                 hintText.textSize = hintTextSize / 1.1f
                                 hintText.y = 0f
                                 animateAlpha(0f, 1f).start()
@@ -167,10 +176,11 @@ class ActiveBottomLineStyle(context: Context, textInputLayout: TextInputLayout) 
                 animateHint(hintText.x, 0f).apply {
                     animateAlpha(1f, 0f).start()
                     doOnEnd {
-                        hintText.textSize = hintTextSize * 1.5f
-                        hintText.y = defaultHintY
-                        animateHint(0f-hintText.width, defaultHintX).apply {
+                        animateHint(0f - hintText.width, defaultHintX).apply {
                             doOnStart {
+                                hintText.textSize = hintTextSize * 1.5f
+                                hintText.y = defaultHintY
+                                hintText.setTextColor(defaultColor)
                                 animateAlpha(0f, 1f).start()
                             }
                             start()

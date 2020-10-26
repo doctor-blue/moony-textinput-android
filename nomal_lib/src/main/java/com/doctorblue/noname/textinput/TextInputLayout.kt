@@ -58,17 +58,20 @@ class TextInputLayout @JvmOverloads constructor(
         }
 
     /**
-     * lineHeight is a custom attribute for LineBottomStyle
+     * lineHeight is a custom attribute for LineBottomStyle, ActiveBottomLineStyle
      */
     @Dimension
     var lineHeight: Int = (2f * resources.displayMetrics.density).roundToInt()
         set(@Dimension value) {
             field = value
             if (textInputStyle != null) {
-                if (textInputStyle is LineBottomStyle) {
-                    (textInputStyle as LineBottomStyle).lineHeight = value
-                } else {
-                    throw  IllegalArgumentException("textInputStyle is not LineBottomStyle !")
+                when (textInputStyle) {
+                    is ActiveBottomLineStyle ->
+                        (textInputStyle as ActiveBottomLineStyle).lineHeight = value
+                    is LineBottomStyle ->
+                        (textInputStyle as LineBottomStyle).lineHeight = value
+                    else -> throw  IllegalArgumentException("textInputStyle is not LineBottomStyle or ActiveBottomLineStyle !")
+
                 }
             }
         }
