@@ -9,4 +9,10 @@
     <style name="Widget.NoNameLib.TextInputLayout.BottomLine" parent="Base.Widget.NoNameLib.TextInputLayout">
         <item name="text_input_style">bottom_line</item>
     </style>
+    <style name="Widget.NoNameLib.TextInputLayout.SwipeLeftIcon" parent="Base.Widget.NoNameLib.TextInputLayout">
+        <item name="text_input_style">swipe_left_icon</item>
+    </style>
+    <style name="Widget.NoNameLib.TextInputLayout.ActiveBottomLine" parent="Base.Widget.NoNameLib.TextInputLayout">
+        <item name="text_input_style">active_bottom_line</item>
+    </style>
 </resources>

@@ -73,6 +73,18 @@ class TextInputLayout @JvmOverloads constructor(
             }
         }
 
+    var leftIcon: Int = -1
+        set(value) {
+            field = value
+            if (textInputStyle != null) {
+                if (textInputStyle is SwipeLeftIconStyle) {
+                    (textInputStyle as SwipeLeftIconStyle).icon = value
+                } else {
+                    throw  IllegalArgumentException("textInputStyle has no leftIcon property !")
+                }
+            }
+        }
+
     private var textInputStyle: TextInputStyle? = null
     var hasInputFrame = false
 
@@ -105,6 +117,8 @@ class TextInputLayout @JvmOverloads constructor(
                 )
 
             hint = typedArray.getString(R.styleable.TextInputLayout_android_hint) ?: hint
+
+            leftIcon = typedArray.getResourceId(R.styleable.TextInputLayout_leftIcon, leftIcon)
 
             textInputStyle = TextInputFactory.getStyle(
                 typedArray.getInt(

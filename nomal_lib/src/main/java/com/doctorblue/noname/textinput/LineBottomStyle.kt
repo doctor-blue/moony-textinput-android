@@ -56,7 +56,7 @@ class LineBottomStyle(context: Context, textInputLayout: TextInputLayout) :
         }
 
     @Dimension
-    var lineHeight: Int = (2f * context.resources.displayMetrics.density).roundToInt()
+    var lineHeight: Int = textInputLayout.lineHeight
         set(@Dimension value) {
             field = value
             if (line != null) {
@@ -70,14 +70,8 @@ class LineBottomStyle(context: Context, textInputLayout: TextInputLayout) :
         LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, lineHeight * 2)
     private var defaultHintY = 0f
     private var defaultLineY = 0f
-    private var hasHint = false
 
     init {
-        line = View(context)
-        line!!.setBackgroundColor(defaultColor)
-        line!!.layoutParams = lineLP
-        lineLP.topMargin = (2f * context.resources.displayMetrics.density).roundToInt()
-
         // setup inputFrame
         //cast inputFrame to LinearLayout
         (inputFrame as LinearLayout).apply {
@@ -87,15 +81,13 @@ class LineBottomStyle(context: Context, textInputLayout: TextInputLayout) :
     }
 
 
-
     override fun onEditTextAdded() {
         super.onEditTextAdded()
         //add line and hint after add edit text
-        if (!hasHint) {
-            initHintAndLine()
-            inputFrame.addView(line)
-            inputFrame.addView(hintText)
-        }
+        initHintAndLine()
+        inputFrame.addView(line)
+        inputFrame.addView(hintText)
+
     }
 
     override fun onFocusChange(v: View?, hasFocus: Boolean) {
@@ -115,6 +107,11 @@ class LineBottomStyle(context: Context, textInputLayout: TextInputLayout) :
         hintText.setTextColor(defaultColor)
         hintText.textSize = hintTextSize
         hintText.typeface = Typeface.DEFAULT_BOLD
+
+        line = View(context)
+        line!!.setBackgroundColor(defaultColor)
+        line!!.layoutParams = lineLP
+        lineLP.topMargin = (2f * context.resources.displayMetrics.density).roundToInt()
     }
 
     private fun onFocus() {

@@ -10,8 +10,8 @@ import androidx.annotation.Dimension
 import androidx.appcompat.widget.AppCompatEditText
 
 abstract class TextInputStyle(
-    private val context: Context,
-    private val textInputLayout: TextInputLayout
+    protected val context: Context,
+    protected val textInputLayout: TextInputLayout
 ) : View.OnFocusChangeListener {
 
 
@@ -43,6 +43,7 @@ abstract class TextInputStyle(
 
     open fun addView(child: View?, index: Int, params: ViewGroup.LayoutParams?) {
         if (child is AppCompatEditText) {
+            onAddEditText()
             // set edit text
             setEditText(child)
             editText!!.onFocusChangeListener = this
@@ -58,6 +59,13 @@ abstract class TextInputStyle(
      * do anything you want after add EditText to inputFrame
      */
     open fun onEditTextAdded() {
+
+    }
+    /**
+     * {@inheritDoc}
+     * do anything you want before add EditText to inputFrame
+     */
+    open fun onAddEditText() {
 
     }
 
