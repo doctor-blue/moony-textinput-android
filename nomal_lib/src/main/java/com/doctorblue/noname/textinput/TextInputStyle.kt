@@ -40,6 +40,8 @@ abstract class TextInputStyle(
     @ColorInt
     open var activeColor: Int = textInputLayout.activeColor
 
+    open var text: String = textInputLayout.text
+
 
     open fun addView(child: View?, index: Int, params: ViewGroup.LayoutParams?) {
         if (child is AppCompatEditText) {
@@ -61,6 +63,7 @@ abstract class TextInputStyle(
     open fun onEditTextAdded() {
 
     }
+
     /**
      * {@inheritDoc}
      * do anything you want before add EditText to inputFrame

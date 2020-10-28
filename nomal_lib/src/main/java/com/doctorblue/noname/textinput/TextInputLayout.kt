@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.ColorInt
@@ -88,6 +89,8 @@ class TextInputLayout @JvmOverloads constructor(
             }
         }
 
+    var text:String= ""
+
     private var textInputStyle: TextInputStyle? = null
     var hasInputFrame = false
 
@@ -165,7 +168,7 @@ class TextInputLayout @JvmOverloads constructor(
     }
 
     @JvmName("setLocalEditText")
-    private fun setEditText(editText: AppCompatEditText) {
+    private fun setEditText(editText: EditText) {
         // If we already have an EditText, throw an exception
         require(this.editText == null) { "We already have an EditText, can only have one" }
 
@@ -176,7 +179,7 @@ class TextInputLayout @JvmOverloads constructor(
                         + " class instead."
             )
         }
-        this.editText = editText
+        this.editText = editText as AppCompatEditText
     }
 
     companion object {
