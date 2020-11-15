@@ -1,6 +1,7 @@
 package com.doctorblue.noname.textinput
 
 import android.content.Context
+import android.os.Parcelable
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.LinearLayout
 import androidx.annotation.ColorInt
 import androidx.annotation.Dimension
 import androidx.appcompat.widget.AppCompatEditText
+
 
 abstract class TextInputStyle(
     protected val context: Context,
@@ -104,5 +106,14 @@ abstract class TextInputStyle(
         textInputLayout.editText = editText
     }
 
+    open fun onSaveInstanceState(state: Parcelable?): Parcelable? {
+        return state
+    }
+
+/*    fun beforeRestoreInstanceState()
+
+    fun onRestoreInstanceState(state: Parcelable?) {
+
+    }*/
 
 }

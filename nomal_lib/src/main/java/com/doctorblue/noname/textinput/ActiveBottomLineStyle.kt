@@ -127,6 +127,8 @@ class ActiveBottomLineStyle(context: Context, textInputLayout: TextInputLayout) 
     }
 
     override fun onFocusChange(v: View?, hasFocus: Boolean) {
+        defaultHintX = editText!!.x
+        defaultHintY = editText!!.y + editText!!.height/2 - hintText.height/2
         this.hasFocus = hasFocus
         if (hasFocus) {
             onFocus()
@@ -135,18 +137,13 @@ class ActiveBottomLineStyle(context: Context, textInputLayout: TextInputLayout) 
         }
     }
 
-    private val defaultHintX by lazy {
-        hintText.x
-    }
-    private val defaultHintY by lazy {
-        hintText.y
-    }
+    private var defaultHintX = hintText.x
+    private var defaultHintY = hintText.y
 
     private fun onFocus() {
 
         // Start focus animation
-        defaultHintY
-        if (editText!!.text!!.isEmpty()){
+        if (editText!!.text!!.isEmpty()) {
             animateBottomLine(0f, line?.width?.toFloat() ?: inputFrame.width.toFloat()).apply {
                 doOnStart {
                     animateHint(defaultHintX, hintText.x + hintText.width).apply {
@@ -174,29 +171,29 @@ class ActiveBottomLineStyle(context: Context, textInputLayout: TextInputLayout) 
 
     private fun onUnFocus() {
         // Start animation
-       if (editText!!.text!!.isEmpty()){
-           animateBottomLine(activeLine!!.width.toFloat(), 0f).apply {
-               doOnStart {
-                   animateHint(hintText.x, 0f).apply {
-                       animateAlpha(1f, 0f).start()
-                       doOnEnd {
-                           animateHint(0f - hintText.width, defaultHintX).apply {
-                               doOnStart {
-                                   hintText.textSize = hintTextSize * 1.5f
-                                   hintText.y = defaultHintY
-                                   hintText.setTextColor(defaultColor)
-                                   animateAlpha(0f, 1f).start()
-                               }
-                               start()
-                           }
-                       }
-                       start()
-                   }
-               }
+        if (editText!!.text!!.isEmpty()) {
+            animateBottomLine(activeLine!!.width.toFloat(), 0f).apply {
+                doOnStart {
+                    animateHint(hintText.x, 0f).apply {
+                        animateAlpha(1f, 0f).start()
+                        doOnEnd {
+                            animateHint(0f - hintText.width, defaultHintX).apply {
+                                doOnStart {
+                                    hintText.textSize = hintTextSize * 1.5f
+                                    hintText.y = defaultHintY
+                                    hintText.setTextColor(defaultColor)
+                                    animateAlpha(0f, 1f).start()
+                                }
+                                start()
+                            }
+                        }
+                        start()
+                    }
+                }
 
-               start()
-           }
-       }
+                start()
+            }
+        }
     }
 
     private fun animateBottomLine(start: Float, end: Float) =

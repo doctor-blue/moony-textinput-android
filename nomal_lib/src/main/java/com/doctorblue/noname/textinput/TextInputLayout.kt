@@ -1,6 +1,7 @@
 package com.doctorblue.noname.textinput
 
 import android.content.Context
+import android.os.Parcelable
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
@@ -89,7 +90,7 @@ class TextInputLayout @JvmOverloads constructor(
             }
         }
 
-    var text:String= ""
+    var text: String = ""
 
     private var textInputStyle: TextInputStyle? = null
     var hasInputFrame = false
@@ -184,6 +185,16 @@ class TextInputLayout @JvmOverloads constructor(
 
     companion object {
         const val LOG_TAG = "TextInputEditText"
+    }
+
+    override fun onSaveInstanceState(): Parcelable? {
+        return textInputStyle?.onSaveInstanceState(super.onSaveInstanceState())
+    }
+
+    override fun onRestoreInstanceState(state: Parcelable?) {
+
+        super.onRestoreInstanceState(state)
+
     }
 
 

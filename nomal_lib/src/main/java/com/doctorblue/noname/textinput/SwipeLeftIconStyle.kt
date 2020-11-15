@@ -117,14 +117,15 @@ class SwipeLeftIconStyle(context: Context, textInputLayout: TextInputLayout) :
     }
 
 
-    private val defaultHintX by lazy {
-        hintText.x
-    }
-    private val defaultIconX by lazy {
-        leftIcon.x
-    }
+    private var defaultHintX = 0f
+
+
+    private var defaultIconX = 0f
 
     override fun onFocusChange(v: View?, hasFocus: Boolean) {
+        defaultHintX = hintFrame.width / 2f - hintText.width / 2f
+        defaultIconX = hintFrame.width / 2f - iconSize / 2f
+
         this.hasFocus = hasFocus
 
         if (hasFocus) {

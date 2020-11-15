@@ -181,4 +181,5 @@ class LineBottomStyle(context: Context, textInputLayout: TextInputLayout) :
                 hintText.alpha = it.animatedValue as Float
             }
         }
+
 }
