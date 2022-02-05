@@ -1,4 +1,17 @@
-include ':nomal_lib'
-include ':bottombar_lib'
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "MoonyTextInput"
 include ':app'
-rootProject.name = "NoName Libs Android"
+include ':library'

@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <com.doctorblue.noname.textinput.TextInputEditText
+    <com.devcomentry.textinputlibrary.TextInputEditText
         android:id="@+id/edt"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -15,36 +14,17 @@
         android:inputType="text"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.doctorblue.noname.textinput.TextInputLayout
+    <com.devcomentry.textinputlibrary.TextInputLayout
         android:id="@+id/textInput"
-        style="@style/Widget.NoNameLib.TextInputLayout.ActiveBottomLine"
+        style="@style/Widget.MoonyLib.TextInputLayout.ActiveBottomLine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/edt"
-        app:leftIcon="@drawable/ic_outline_account_24">
+        app:leftIcon="@drawable/ic_baseline_account_circle">
 
-        <com.doctorblue.noname.textinput.TextInputEditText
+        <com.devcomentry.textinputlibrary.TextInputEditText
             android:id="@+id/edt_"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-    </com.doctorblue.noname.textinput.TextInputLayout>
-
-    <Button
-        android:id="@+id/btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textInput" />
-
-    <!--    <com.doctorblue.noname.NoNameBottomBar
-            android:id="@+id/noNameBottomBar"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            app:menu="@menu/bottom_menu"
-            style="@style/Widget.NoNameLib.BottomBar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />-->
+    </com.devcomentry.textinputlibrary.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
